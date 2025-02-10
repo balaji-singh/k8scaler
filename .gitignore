@@ -1,0 +1,28 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Node.js dependencies
+node_modules/
+
+# Log files
+*.log
+
+# Build output
+dist/
+build/
+package-lock.json
+
+# IDE and Editor files
+.idea/
+.vscode/
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Database files
+metrics.db
