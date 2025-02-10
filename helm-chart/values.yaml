@@ -1,0 +1,7 @@
+replicaCount: 1
+image:
+  repository: your-repo/autoscaler
+  tag: latest
+service:
+  type: ClusterIP
+  port: 80

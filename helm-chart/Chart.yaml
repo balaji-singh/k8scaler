@@ -1,0 +1,4 @@
+apiVersion: v2
+name: autoscaler
+description: A Helm chart for Kubernetes Autoscaler
+version: 0.1.0

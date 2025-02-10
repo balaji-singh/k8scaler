@@ -1,0 +1,4 @@
+kopf
+kubernetes
+prometheus_client
+scikit-learn
