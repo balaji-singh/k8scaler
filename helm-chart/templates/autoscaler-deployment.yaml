@@ -1,19 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: autoscaler
+  name: {{ include "k8scaler.fullname" . }}
+  labels:
+    app: {{ include "k8scaler.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: autoscaler
+      app: {{ include "k8scaler.name" . }}
   template:
     metadata:
       labels:
-        app: autoscaler
+        app: {{ include "k8scaler.name" . }}
     spec:
+      serviceAccountName: {{ include "k8scaler.serviceAccountName" . }}
       containers:
         - name: autoscaler
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 80
+            - containerPort: 8000
+          env:
+            - name: ENVIRONMENT
+              value: "production"

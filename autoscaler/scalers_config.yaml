@@ -1,3 +1,25 @@
-scalers:
-  - name: KafkaScaler
-    module: autoscaler.scalers.kafka_scaler
+kafka:
+  module: kafka_scaler
+  class: KafkaScaler
+  topic: "orders"
+  broker: "kafka:9092"
+  threshold: 100
+
+redis:
+  module: redis_scaler
+  class: RedisScaler
+  host: "redis:6379"
+  threshold: 100
+
+sqs:
+  module: sqs_scaler
+  class: SqsScaler
+  queue: "orders"
+  threshold: 100
+
+rabbitmq:
+  module: rabbitmq_scaler
+  class: RabbitmqScaler
+  queue: "orders"
+  threshold: 100
+

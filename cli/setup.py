@@ -1,10 +1,16 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='autoscaler_cli',
-    version='1.0',
+    name="k8scaler-cli",
+    version="0.1",
     packages=find_packages(),
     install_requires=[
-        'Click'
+        "click",
+        "requests",
     ],
+    entry_points={
+        "console_scripts": [
+            "k8scaler=autoscaler_cli:cli",
+        ],
+    },
 )

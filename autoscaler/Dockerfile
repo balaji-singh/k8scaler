@@ -1,14 +1,16 @@
 FROM python:3.9-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy requirements and install
+# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the code
+# Copy the application code
 COPY . .
 
-# Command to run the application
-CMD ["kopf","run","autoscaler.py"]
+# Expose any required ports (if using Prometheus metrics server, e.g., port 8000)
+EXPOSE 8000
+
+# Start the autoscaler service
+CMD ["python", "autoscaler.py"]

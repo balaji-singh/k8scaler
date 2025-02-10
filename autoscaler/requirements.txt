@@ -1,4 +1,7 @@
-kopf
-kubernetes
-prometheus_client
-scikit-learn
+kopf==1.36.2
+kubernetes==23.7.0
+prometheus_client==0.16.0
+scikit-learn==1.2.2
+pandas==1.5.3
+numpy==1.24.2
+joblib==1.2.0

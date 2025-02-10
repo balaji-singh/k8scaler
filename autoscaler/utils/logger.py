@@ -1,13 +1,12 @@
+# autoscaler/utils/logger.py
 import logging
 
-# Utility for logging
-
-def setup_logger(name):
+def get_logger(name="k8scaler"):
     logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+    if not logger.handlers:
+        logger.setLevel(logging.INFO)
+        ch = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        ch.setFormatter(formatter)
+        logger.addHandler(ch)
     return logger

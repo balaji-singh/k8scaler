@@ -1,22 +1,33 @@
+{{- if .Values.rbac.create -}}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "k8scaler.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: autoscaler-role
+  name: {{ include "k8scaler.fullname" . }}-role
+  namespace: {{ .Release.Namespace }}
 rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verbs: ["*"]
-
+  - apiGroups: [""]
+    resources: ["pods", "services", "endpoints"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets"]
+    verbs: ["get", "list", "watch", "patch", "update"]
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: autoscaler-role-binding
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: autoscaler-role
+  name: {{ include "k8scaler.fullname" . }}-rolebinding
+  namespace: {{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
-    name: default
+    name: {{ include "k8scaler.serviceAccountName" . }}
+roleRef:
+  kind: Role
+  name: {{ include "k8scaler.fullname" . }}-role
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}

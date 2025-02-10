@@ -1,4 +1,6 @@
 apiVersion: v2
-name: autoscaler
-description: A Helm chart for Kubernetes Autoscaler
+name: k8scaler
+description: A KEDA-like autoscaler with AI-based predictive scaling and multi-tenant, multi-cluster support.
+type: application
 version: 0.1.0
+appVersion: "1.0"
