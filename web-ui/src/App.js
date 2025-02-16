@@ -1,7 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
 import io from "socket.io-client";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const API_URL = "http://localhost:8000";
 const socket = io(API_URL);
